@@ -3,19 +3,56 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; ########################################################################################
+;; PERSONAL CONFIG
+;; ########################################################################################
+
 (add-hook 'after-change-major-mode-hook #' (lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'after-change-major-mode-hook #' (lambda () (modify-syntax-entry ?- "w")))
 
-(setq c-default-style "bsd")
+;; Disable file watchers
+(setq-default lsp-enable-file-watchers nil)
+
+;; Set C/C++ conding style
+(setq-default c-default-style "bsd")
+
+;; Don't auto insert a newline at the end of a file
+(setq-default require-final-newline nil
+              c-require-final-newline nil
+              mode-require-final-newline nil)
 
 (map! :leader
       :desc "Toggle Comment"
       "/" #'comment-line)
 
+;; Swap split/split+follow keys (follow is preferred)
+(map! :leader "w s" #'+evil/window-split-and-follow)
+(map! :leader "w S" #'evil-window-split)
+(map! :leader "w v" #'+evil/window-vsplit-and-follow)
+(map! :leader "w V" #'evil-window-vsplit)
+
+;; Swap toggle fullscreen and flycheck
+(map! :leader "t f" #'toggle-frame-fullscreen)
+(map! :leader "t F" #'flycheck-mode)
+
+;; Keys to cycle through open buffers
+(define-key evil-normal-state-map "_" 'previous-buffer)
+(define-key evil-normal-state-map "+" 'next-buffer)
+
 (define-key global-map (kbd "C-s") 'basic-save-buffer)
 (define-key global-map (kbd "S-s") 'basic-save-buffer)
 (define-key global-map (kbd "C-/") 'comment-line)
 (define-key global-map (kbd "S-/") 'comment-line)
+
+;; Render trailing whitespace
+;; TODO: Don't render the trailing whitespace in the command bar
+;; (setq-default show-trailing-whitespace t)
+
+;; Don't trim trailing whitespace on file save
+;; (remove-hook 'before-save-hook 'delete-trailing-whitespace)
+(remove-hook 'before-save-hook 'ws-butler-before-save)
+
+;; ########################################################################################
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -45,7 +82,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-bluloco-dark)
+(setq doom-theme 'doom-vibrant)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
