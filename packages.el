@@ -48,3 +48,18 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;; Themes
+(package! kaolin-themes)
+(package! darkmine-theme)
+(package! timu-macos-theme)
+(package! ef-themes)
+(package! vscode-dark-plus-theme)
+(package! atom-one-dark-theme)
+(package! sublime-themes)
+(package! modus-themes)
+
+;; Fun
+(package! fireplace)
+(package! snow)
+(package! zone)
