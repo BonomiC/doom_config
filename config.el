@@ -21,10 +21,6 @@
               c-require-final-newline nil
               mode-require-final-newline nil)
 
-(map! :leader
-      :desc "Toggle Comment"
-      "/" #'comment-line)
-
 ;; Swap split/split+follow keys (follow is preferred)
 (map! :leader "w s" #'+evil/window-split-and-follow)
 (map! :leader "w S" #'evil-window-split)
@@ -38,6 +34,11 @@
 ;; Keys to cycle through open buffers
 (define-key evil-normal-state-map "_" 'previous-buffer)
 (define-key evil-normal-state-map "+" 'next-buffer)
+
+;; Useful keymaps
+(map! :leader
+      :desc "Toggle Comment"
+      "/" #'comment-line)
 
 (define-key global-map (kbd "C-s") 'basic-save-buffer)
 (define-key global-map (kbd "S-s") 'basic-save-buffer)
