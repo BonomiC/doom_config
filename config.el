@@ -68,8 +68,7 @@
 (defun activate-snow-mode ()
   (interactive)
   (with-current-buffer (get-buffer "*snow*")
-    (snow-mode)
-    (message "set snow mode")))
+    (snow-mode)))
 
 (advice-add 'snow :after #'activate-snow-mode)
 
