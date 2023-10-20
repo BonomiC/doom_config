@@ -53,6 +53,32 @@
 ;; (remove-hook 'before-save-hook 'delete-trailing-whitespace)
 (remove-hook 'before-save-hook 'ws-butler-before-save)
 
+;; Create a snow-mode and activate it when the snow function runs
+;; ###
+
+(define-derived-mode snow-mode special-mode  "Let it snow!"
+  "Major mode for *snow* buffers.")
+
+(defun activate-snow-mode ()
+  (interactive)
+  (with-current-buffer (get-buffer "*snow*")
+    (snow-mode)
+    (message "set snow mode")))
+
+(advice-add 'snow :after #'activate-snow-mode)
+
+;; ###
+
+;; Check if not in fire or snow mode to zone out
+(defun zone-if-not-fire-snow ()
+  (interactive)
+  (if (and (not (eq major-mode 'fireplace-mode))
+           (not (eq major-mode 'snow-mode)))
+      (call-interactively #'zone)))
+
+;; Zone out after 2 minutes
+;; (setq zone-timer (run-with-idle-timer 5 t #'zone-if-not-fire-snow))
+
 ;; ########################################################################################
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
