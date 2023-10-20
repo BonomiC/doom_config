@@ -45,6 +45,12 @@
 (define-key global-map (kbd "C-/") 'comment-line)
 (define-key global-map (kbd "S-/") 'comment-line)
 
+;; TODO: Map these to better keys
+;; Currently on M-p and M-n
+;; In minibuffer-local-map or minibuffer-mode-map
+;; previous-history-element
+;; next-history-element
+
 ;; Render trailing whitespace
 ;; TODO: Don't render the trailing whitespace in the command bar
 ;; (setq-default show-trailing-whitespace t)
