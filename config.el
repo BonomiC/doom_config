@@ -79,10 +79,10 @@
   (interactive)
   (if (and (not (eq major-mode 'fireplace-mode))
            (not (eq major-mode 'snow-mode)))
-      (call-interactively #'zone)))
+      (zone)))
 
-;; Zone out after 2 minutes
-;; (setq zone-timer (run-with-idle-timer 5 t #'zone-if-not-fire-snow))
+;; Zone out after 5 minutes
+(setq zone-timer (run-with-idle-timer 300 t #'zone-if-not-fire-snow))
 
 ;; ########################################################################################
 
