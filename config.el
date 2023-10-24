@@ -10,6 +10,8 @@
 (add-hook 'after-change-major-mode-hook #' (lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'after-change-major-mode-hook #' (lambda () (modify-syntax-entry ?- "w")))
 
+(add-hook 'evil-insert-state-exit-hook #' (lambda () (basic-save-buffer)))
+
 ;; Disable file watchers
 (setq-default lsp-enable-file-watchers nil)
 
